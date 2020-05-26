@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { getGames } from "../../api/Game";
 
 const StyledLink = styled(Link)`
   color: blue;
@@ -18,27 +18,71 @@ function GameCard(props) {
   const [developerId, setDeveloperId] = useState("");
   const [publisherId, setPublisherId] = useState("");
 
+  const [state, setstate] = useState({
+    game: {
+      developers: [],
+      publishers: []
+    }
+  })
+ 
+  useEffect(() => {
+    axios({
+      "method":"GET",
+      "url":"https://rawg-video-games-database.p.rapidapi.com/games/"+props.game.id,
+      "headers":{
+      "content-type":"application/octet-stream",
+      "x-rapidapi-host":"rawg-video-games-database.p.rapidapi.com",
+      "x-rapidapi-key":"971e449173msh49c1dda89321109p14cd1fjsn3a2338239d1e",
+      "useQueryString":true
+      }
+      })
+      .then((response)=>{
+        setstate( {game: response.data})
+      })
+      .catch((error)=>{
+        console.log(error)
+      })
+  },[] )
+  let devs= ""
+  devs += state.game.developers.map(dev =>{ return dev.name })
+
   return (
-    <div className="GameCard">
-      <StyledLink to={`/game/${gameId}`}>
-        <Sprite className="GameImage" src={gameImage} />
-        <h5>{props.game.name}</h5>
-      </StyledLink>
-      <div className="developerRoute">
-        <h6>Developer:</h6>
-        <StyledLink to={`/developers/${developerId}`}>
-          <h6>Developer Team</h6>
-        </StyledLink>
-      </div>
-      <div className="publisherRoute">
-        <h6>Publisher:</h6>
-        <StyledLink to={`/publisher/${publisherId}`}>
-          <h6>Publisher Company</h6>
-        </StyledLink>
-      </div>
-      <div className="ratingInfo">
-        <h6>Rating:</h6>
-        <h6>Rating Number</h6>
+    <div className="card-container">
+      <div className="card">
+        <div className="card-header">
+          <StyledLink to={`/game/${state.game.id}`}>
+            <Sprite className="GameImage" src={state.game.background_image} />
+            <h5>{state.game.name}</h5>
+          </StyledLink>
+        </div>
+        <div className="card-body">
+          <div className="GameCard">
+            <div className="developerRoute">
+              <h6>Developer:</h6>
+              {state.game.developers.map(dev =>{ 
+                return ( 
+                <StyledLink to={`/developers/${dev.id}`}>
+                <h6>{dev.name}</h6>
+                </StyledLink>
+                )}
+            )}
+            </div>
+            <div className="publisherRoute">
+              <h6>Publisher:</h6>
+              {state.game.developers.map(pub =>{ 
+                return ( 
+                  <StyledLink to={`/publisher/${pub.id}`}>
+                    <h6>{pub.name}</h6>
+                  </StyledLink>
+                )}
+              )}
+            </div>
+            <div className="ratingInfo">
+              <h6>Rating:</h6>
+                <h6>{state.game.rating}</h6>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -9,10 +9,11 @@ import GameList from "./components/games/GameList";
 
 const CardContainer = styled.div`
   width: 80%;
-  background-color: #fff;
+  background-color: #202121;
   border-radius: 15px;
   margin: auto;
   margin-top: 10px;
+  padding: 20px;
 `;
 
 const App = (props) => {
