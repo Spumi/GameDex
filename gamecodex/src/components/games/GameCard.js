@@ -21,30 +21,34 @@ function GameCard(props) {
   const [state, setstate] = useState({
     game: {
       developers: [],
-      publishers: []
-    }
-  })
- 
+      publishers: [],
+    },
+  });
+
   useEffect(() => {
     axios({
-      "method":"GET",
-      "url":"https://rawg-video-games-database.p.rapidapi.com/games/"+props.game.id,
-      "headers":{
-      "content-type":"application/octet-stream",
-      "x-rapidapi-host":"rawg-video-games-database.p.rapidapi.com",
-      "x-rapidapi-key":"971e449173msh49c1dda89321109p14cd1fjsn3a2338239d1e",
-      "useQueryString":true
-      }
+      method: "GET",
+      url:
+        "https://rawg-video-games-database.p.rapidapi.com/games/" +
+        props.game.id,
+      headers: {
+        "content-type": "application/octet-stream",
+        "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com",
+        "x-rapidapi-key": "971e449173msh49c1dda89321109p14cd1fjsn3a2338239d1e",
+        useQueryString: true,
+      },
+    })
+      .then((response) => {
+        setstate({ game: response.data });
       })
-      .then((response)=>{
-        setstate( {game: response.data})
-      })
-      .catch((error)=>{
-        console.log(error)
-      })
-  },[] )
-  let devs= ""
-  devs += state.game.developers.map(dev =>{ return dev.name })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+  let devs = "";
+  devs += state.game.developers.map((dev) => {
+    return dev.name;
+  });
 
   return (
     <div className="card-container">
@@ -59,27 +63,27 @@ function GameCard(props) {
           <div className="GameCard">
             <div className="developerRoute">
               <h6>Developer:</h6>
-              {state.game.developers.map(dev =>{ 
-                return ( 
-                <StyledLink key={dev.id} to={`/developers/${dev.id}`}>
-                <h6>{dev.name}</h6>
-                </StyledLink>
-                )}
-            )}
+              {state.game.developers.map((dev) => {
+                return (
+                  <StyledLink key={dev.id} to={`/developer/${dev.id}`}>
+                    <h6>{dev.name}</h6>
+                  </StyledLink>
+                );
+              })}
             </div>
             <div className="publisherRoute">
               <h6>Publisher:</h6>
-              {state.game.developers.map(pub =>{ 
-                return ( 
+              {state.game.developers.map((pub) => {
+                return (
                   <StyledLink key={pub.id} to={`/publisher/${pub.id}`}>
                     <h6>{pub.name}</h6>
                   </StyledLink>
-                )}
-              )}
+                );
+              })}
             </div>
             <div className="ratingInfo">
               <h6>Rating:</h6>
-                <h6>{state.game.rating}</h6>
+              <h6>{state.game.rating}</h6>
             </div>
           </div>
         </div>
