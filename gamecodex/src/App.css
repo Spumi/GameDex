@@ -10,7 +10,6 @@ body {
 }
 
 .card {
-  min-width: 500px;
-  max-width: 500px;
+  width: 30%;
   margin: 20px;
 }
