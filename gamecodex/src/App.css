@@ -8,3 +8,8 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
+.card {
+  width: 30%;
+  margin: 20px;
+}
