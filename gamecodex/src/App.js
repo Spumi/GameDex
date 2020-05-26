@@ -9,6 +9,7 @@ const App = (props) => {
     <BrowserRouter>
       <div className="App">
         <Navbar />
+        <div className="Container"></div>
       </div>
     </BrowserRouter>
   );
