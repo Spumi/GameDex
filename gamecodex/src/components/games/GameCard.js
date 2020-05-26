@@ -61,7 +61,7 @@ function GameCard(props) {
               <h6>Developer:</h6>
               {state.game.developers.map(dev =>{ 
                 return ( 
-                <StyledLink to={`/developers/${dev.id}`}>
+                <StyledLink key={dev.id} to={`/developers/${dev.id}`}>
                 <h6>{dev.name}</h6>
                 </StyledLink>
                 )}
@@ -71,7 +71,7 @@ function GameCard(props) {
               <h6>Publisher:</h6>
               {state.game.developers.map(pub =>{ 
                 return ( 
-                  <StyledLink to={`/publisher/${pub.id}`}>
+                  <StyledLink key={pub.id} to={`/publisher/${pub.id}`}>
                     <h6>{pub.name}</h6>
                   </StyledLink>
                 )}
