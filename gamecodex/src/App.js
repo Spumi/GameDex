@@ -7,6 +7,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import styled from "styled-components";
 import GameList from "./components/games/GameList";
 import DeveloperList from "./components/developers/DeveloperList";
+import PublisherList from "./components/publishers/PublisherList";
 
 const CardContainer = styled.div`
   width: 80%;
@@ -25,6 +26,7 @@ const App = (props) => {
         <CardContainer>
           <Route exact path="/" component={GameList} />
           <Route path="/developers" component={DeveloperList} />
+          <Route path="/publishers" component={PublisherList} />
         </CardContainer>
       </div>
     </BrowserRouter>
