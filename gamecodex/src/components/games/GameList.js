@@ -3,8 +3,12 @@ import GameCard from "./GameCard";
 
 function GameList(props) {
   return (
-    <div>
-      <GameCard />
+    <div className="row">
+      <div className="col">
+        <div className="row">
+          <GameCard />
+        </div>
+      </div>
     </div>
   );
 }
