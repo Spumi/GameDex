@@ -73,7 +73,7 @@ function GameCard(props) {
             </div>
             <div className="publisherRoute">
               <h6>Publisher:</h6>
-              {state.game.developers.map((pub) => {
+              {state.game.publishers.map((pub) => {
                 return (
                   <StyledLink key={pub.id} to={`/publisher/${pub.id}`}>
                     <h6>{pub.name}</h6>
