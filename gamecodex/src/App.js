@@ -6,6 +6,7 @@ import Navbar from "./components/layout/Navbar";
 import { BrowserRouter, Route } from "react-router-dom";
 import styled from "styled-components";
 import GameList from "./components/games/GameList";
+import DeveloperList from "./components/developers/DeveloperList";
 
 const CardContainer = styled.div`
   width: 80%;
@@ -22,7 +23,8 @@ const App = (props) => {
       <div className="App">
         <Navbar />
         <CardContainer>
-          <Route path="/" component={GameList} />
+          <Route exact path="/" component={GameList} />
+          <Route path="/developers" component={DeveloperList} />
         </CardContainer>
       </div>
     </BrowserRouter>
