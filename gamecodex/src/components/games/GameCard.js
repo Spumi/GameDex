@@ -3,12 +3,12 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const StyledLink = styled(Link)`
-  color: lightgray;
+  color: blue;
 `;
 
 const Sprite = styled.img`
-  width: 12px;
-  height: 12px;
+  width: 120px;
+  height: 120px;
 `;
 
 function GameCard(props) {
@@ -21,23 +21,23 @@ function GameCard(props) {
     <div className="GameCard">
       <StyledLink to={`/game/${gameId}`}>
         <Sprite className="GameImage" src={gameImage} />
-        <h5>{props.name}</h5>
+        <h5>Title</h5>
       </StyledLink>
       <div className="developerRoute">
         <h6>Developer:</h6>
         <StyledLink to={`/developers/${developerId}`}>
-          <h6>{props.developer}</h6>
+          <h6>Developer Team</h6>
         </StyledLink>
       </div>
       <div className="publisherRoute">
         <h6>Publisher:</h6>
         <StyledLink to={`/publisher/${publisherId}`}>
-          <h6>{props.publisher}</h6>
+          <h6>Publisher Company</h6>
         </StyledLink>
       </div>
       <div className="ratingInfo">
         <h6>Rating:</h6>
-        <h6>{props.rating}</h6>
+        <h6>Rating Number</h6>
       </div>
     </div>
   );

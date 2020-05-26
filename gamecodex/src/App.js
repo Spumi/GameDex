@@ -5,10 +5,11 @@ import React, { useState, useEffect } from "react";
 import Navbar from "./components/layout/Navbar";
 import { BrowserRouter, Route } from "react-router-dom";
 import styled from "styled-components";
+import GameList from "./components/games/GameList";
 
 const CardContainer = styled.div`
   width: 80%;
-  background-color: #202121;
+  background-color: #fff;
   border-radius: 15px;
   margin: auto;
   margin-top: 10px;
@@ -19,10 +20,9 @@ const App = (props) => {
     <BrowserRouter>
       <div className="App">
         <Navbar />
-        <div className="Container">
+        <CardContainer>
           <Route path="/" component={GameList} />
-        </div>
-        <CardContainer>test</CardContainer>
+        </CardContainer>
       </div>
     </BrowserRouter>
   );
