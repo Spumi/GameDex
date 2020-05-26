@@ -1,0 +1,10 @@
+.App {
+  padding-top: 4rem;
+  margin: auto;
+}
+
+body {
+  background-image: url("./images/background.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
