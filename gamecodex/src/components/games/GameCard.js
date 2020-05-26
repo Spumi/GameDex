@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { getGames } from "../../api/Game";
 
 const StyledLink = styled(Link)`
   color: blue;
@@ -21,7 +22,7 @@ function GameCard(props) {
     <div className="GameCard">
       <StyledLink to={`/game/${gameId}`}>
         <Sprite className="GameImage" src={gameImage} />
-        <h5>Title</h5>
+        <h5>{props.game.name}</h5>
       </StyledLink>
       <div className="developerRoute">
         <h6>Developer:</h6>
