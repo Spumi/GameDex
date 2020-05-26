@@ -24,9 +24,13 @@ const App = (props) => {
       <div className="App">
         <Navbar />
         <CardContainer>
+          <button>Previous</button>
+          <button>Next</button>
           <Route exact path="/" component={GameList} />
           <Route path="/developers" component={DeveloperList} />
           <Route path="/publishers" component={PublisherList} />
+          <button>Previous</button>
+          <button>Next</button>
         </CardContainer>
       </div>
     </BrowserRouter>
