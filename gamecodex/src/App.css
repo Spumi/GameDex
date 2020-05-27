@@ -12,8 +12,34 @@ body {
 .card {
   margin: 20px;
   max-width: 250px;
+  margin-bottom: 0px;
 }
 
 .card-deck {
   width: 30%;
+}
+
+.card:hover .card-body {
+  visibility: visible;
+  opacity: 1;
+}
+
+.card-container {
+  margin: 0 auto;
+}
+
+.card-body {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 3;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 1s;
+
+  background-color: white;
+  padding: 5px;
+  border: 1px solid black;
 }
