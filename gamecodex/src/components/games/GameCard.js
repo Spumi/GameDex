@@ -8,7 +8,8 @@ const StyledLink = styled(Link)`
 `;
 
 const Sprite = styled.img`
-  height: 15vw;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
 `;
 
