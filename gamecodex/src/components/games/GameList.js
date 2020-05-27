@@ -43,23 +43,27 @@ function GameList(props) {
       });
   }, []);
 
+  const SortGames = () => {};
+
   return (
     <React.Fragment>
       <div className="filterRow">
-        <p>Filters:</p>
+        <label>Filters: </label>
         <select className="orderSelector">
-          <option value="DefaultSort">Select an order</option>
+          <option value="DefaultOrder">Select an order</option>
           <option value="Name">Name</option>
           <option value="ReleaseDate">Release Date</option>
           <option value="Rating">Rating</option>
         </select>
         <select className="platformSelector">
-          <option>Select a platform</option>
+          <option value="AllPlatforms">Select a platform</option>
           {platform.platforms.map((p) => (
             <option value={p.id}>{p.name}</option>
           ))}
         </select>
-        <button type="submit">Filter</button>
+        <button type="submit" onClick={SortGames}>
+          Filter
+        </button>
       </div>
       <div className="row">
         <div className="col">
