@@ -9,7 +9,7 @@ const LinkStyle = styled(Link)`
 
 const Navbar = (props) => {
   return (
-    <div className="navbar navbar-expand-md bg-dark fixed-top justify-content-between">
+    <div className="navbar navbar-expand-md bg-dark-gray fixed-top justify-content-between">
       <h4>
         <LinkStyle to="/">Games</LinkStyle>
       </h4>
