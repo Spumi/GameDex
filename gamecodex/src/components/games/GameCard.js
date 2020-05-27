@@ -4,13 +4,14 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const StyledLink = styled(Link)`
-  color: blue;
+  color: lightgray;
 `;
 
 const Sprite = styled.img`
   width: 200px;
   height: 200px;
   object-fit: cover;
+  margin: 5px;
 `;
 
 function GameCard(props) {
@@ -60,7 +61,7 @@ function GameCard(props) {
           <div className="card-body">
             <div className="GameCard">
               <div className="developerRoute">
-                <h6>Developer(s):</h6>
+                <h5>Developer(s):</h5>
                 {state.game.developers.map((dev) => {
                   return (
                     <StyledLink key={dev.id} to={`/developer/${dev.id}`}>
@@ -70,7 +71,7 @@ function GameCard(props) {
                 })}
               </div>
               <div className="publisherRoute">
-                <h6>Publisher(s):</h6>
+                <h5>Publisher(s):</h5>
                 {state.game.publishers.map((pub) => {
                   return (
                     <StyledLink key={pub.id} to={`/publisher/${pub.id}`}>
@@ -80,7 +81,7 @@ function GameCard(props) {
                 })}
               </div>
               <div className="ratingInfo">
-                <h6>Rating: {state.game.rating}</h6>
+                <h5>Rating:</h5> <h6>{state.game.rating}</h6>
               </div>
             </div>
           </div>
