@@ -81,7 +81,7 @@ function GameCard(props) {
                 })}
               </div>
               <div className="ratingInfo">
-                <h5>Rating:</h5> <h6>{state.game.rating}</h6>
+                <h5>Rating: {state.game.rating}</h5>
               </div>
             </div>
           </div>
