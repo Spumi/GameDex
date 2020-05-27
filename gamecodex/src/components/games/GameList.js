@@ -4,6 +4,7 @@ import GameCard from "./GameCard";
 
 function GameList(props) {
   const [state, setstate] = useState({ games: [] });
+  const [platform, setPlatform] = useState({ platforms: [] });
 
   useEffect(() => {
     axios({
@@ -24,9 +25,42 @@ function GameList(props) {
       });
   }, []);
 
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: "https://rawg-video-games-database.p.rapidapi.com/platforms",
+      headers: {
+        "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com",
+        "x-rapidapi-key": "8c1c4d646amsh9f0dfeca786087ep1e32c8jsnf00e67f10d71",
+        useQueryString: true,
+      },
+    })
+      .then((response) => {
+        setPlatform({ platforms: response.data.results });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <React.Fragment>
-      <div className="filters"></div>
+      <div className="filterRow">
+        <p>Filters:</p>
+        <select className="orderSelector">
+          <option value="DefaultSort">Select an order</option>
+          <option value="Name">Name</option>
+          <option value="ReleaseDate">Release Date</option>
+          <option value="Rating">Rating</option>
+        </select>
+        <select className="platformSelector">
+          <option>Select a platform</option>
+          {platform.platforms.map((p) => (
+            <option value={p.id}>{p.name}</option>
+          ))}
+        </select>
+        <button type="submit">Filter</button>
+      </div>
       <div className="row">
         <div className="col">
           <div className="row">
