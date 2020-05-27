@@ -25,15 +25,18 @@ function GameList(props) {
   }, []);
 
   return (
-    <div className="row">
-      <div className="col">
-        <div className="row">
-          {state.games.map((g) => (
-            <GameCard key={g.id} game={g} />
-          ))}
+    <React.Fragment>
+      <div className="filters"></div>
+      <div className="row">
+        <div className="col">
+          <div className="row">
+            {state.games.map((g) => (
+              <GameCard key={g.id} game={g} />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 }
 
