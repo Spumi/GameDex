@@ -3,6 +3,10 @@
   margin: auto;
 }
 
+.navbar {
+  background-color: #2b2928;
+}
+
 body {
   background-image: url("./images/background.jpg");
   background-repeat: no-repeat;

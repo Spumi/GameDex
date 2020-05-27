@@ -80,8 +80,7 @@ function GameCard(props) {
                 })}
               </div>
               <div className="ratingInfo">
-                <h6>Rating:</h6>
-                <h6>{state.game.rating}</h6>
+                <h6>Rating: {state.game.rating}</h6>
               </div>
             </div>
           </div>
