@@ -60,7 +60,7 @@ function GameCard(props) {
           <div className="card-body">
             <div className="GameCard">
               <div className="developerRoute">
-                <h6>Developer:</h6>
+                <h6>Developer(s):</h6>
                 {state.game.developers.map((dev) => {
                   return (
                     <StyledLink key={dev.id} to={`/developer/${dev.id}`}>
@@ -70,7 +70,7 @@ function GameCard(props) {
                 })}
               </div>
               <div className="publisherRoute">
-                <h6>Publisher:</h6>
+                <h6>Publisher(s):</h6>
                 {state.game.publishers.map((pub) => {
                   return (
                     <StyledLink key={pub.id} to={`/publisher/${pub.id}`}>
