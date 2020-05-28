@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import GameCard from "./GameCard";
 
 const StyledLink = styled(Link)`
   color: blue;
@@ -15,6 +16,8 @@ function GameInfo(props) {
   const [gameImage, setGameImage] = useState("");
   const [developerId, setDeveloperId] = useState("");
   const [publisherId, setPublisherId] = useState("");
+
+  const [state, setState] = useState();
 
   return (
     <div className="GameInfo">

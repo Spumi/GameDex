@@ -8,6 +8,7 @@ function GameList(props) {
   const [state, setstate] = useState({ games: {results: []} });
   const [page, setPage] = useState({ page: 1 });
   const pc = useContext(PageContext);
+  const [platform, setPlatform] = useState({ platforms: [] });
 
   useEffect(() => {if (props.match.path !== "/"){
     setPage({page: props.match.params.page});
@@ -18,6 +19,7 @@ function GameList(props) {
   else
     setPage({page: 1});
   },[props.match.params.page])
+
 
   useEffect(() => {
     
@@ -59,22 +61,60 @@ function GameList(props) {
     )
   }
 
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: "https://rawg-video-games-database.p.rapidapi.com/platforms",
+      headers: {
+        "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com",
+        "x-rapidapi-key": "8c1c4d646amsh9f0dfeca786087ep1e32c8jsnf00e67f10d71",
+        useQueryString: true,
+      },
+    })
+      .then((response) => {
+        setPlatform({ platforms: response.data.results });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  const SortGames = () => {};
+
   return (
-    <div>
-      {prevButton()}
-      {nextButton()}     
-    <div className="row">
-      <div className="col">
-        <div className="row">
-          {state.games.results.map((g) => (
-            <GameCard key={g.id} game={g} />
+    <React.Fragment>
+      <div className="filterRow">
+        <label>Filters: </label>
+        <select className="orderSelector">
+          <option value="DefaultOrder">Select an order</option>
+          <option value="Name">Name</option>
+          <option value="ReleaseDate">Release Date</option>
+          <option value="Rating">Rating</option>
+        </select>
+        <select className="platformSelector">
+          <option value="AllPlatforms">Select a platform</option>
+          {platform.platforms.map((p) => (
+            <option value={p.id}>{p.name}</option>
           ))}
+        </select>
+        <button type="submit" onClick={SortGames}>
+          Filter
+        </button>
+      </div>
+      {prevButton()}
+      {nextButton()}
+      <div className="row">
+        <div className="col">
+          <div className="row">
+            {state.games.results.map((g) => (
+              <GameCard key={g.id} game={g} />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
       {prevButton()}
-      {nextButton()}     
-    </div>
+      {nextButton()}
+    </React.Fragment>
   );
 }
 

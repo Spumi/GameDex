@@ -9,17 +9,11 @@ const StyledLink = styled(Link)`
 `;
 
 const Sprite = styled.img`
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
+  width: 120px;
+  height: 120px;
 `;
 
 function GameCard(props) {
-  const [gameId, setGameId] = useState("");
-  const [gameImage, setGameImage] = useState("");
-  const [developerId, setDeveloperId] = useState("");
-  const [publisherId, setPublisherId] = useState("");
-
   const [state, setstate] = useState({
     game: {
       developers: [],
@@ -30,7 +24,9 @@ function GameCard(props) {
   useEffect(() => {
     axios({
       method: "GET",
-      url: `https://rawg-video-games-database.p.rapidapi.com/games/${props.game.id}`,
+      url:
+        "https://rawg-video-games-database.p.rapidapi.com/games/" +
+        props.game.id,
       headers: {
         "content-type": "application/octet-stream",
         "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com",
@@ -44,7 +40,7 @@ function GameCard(props) {
       .catch((error) => {
         console.log(error);
       });
-  }, [props.game.id]);
+  }, []);
   let devs = "";
   devs += state.game.developers.map((dev) => {
     return dev.name;
