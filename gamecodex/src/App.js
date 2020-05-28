@@ -31,7 +31,7 @@ const App = (props) => {
             <Route path="/:page" component={GameList} />
         </PageContext.Provider>
           {/* <Route exact path="/" component={GameList} /> */}
-          <Route path="/">
+          <Route exact path="/">
             <Redirect to="/1" />
           </Route>
           <Route path="/developers" component={DeveloperList} />

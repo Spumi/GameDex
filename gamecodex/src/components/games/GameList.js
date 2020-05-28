@@ -27,7 +27,8 @@ function GameList(props) {
     
     axios({
       method: "GET",
-      url: "https://rawg-video-games-database.p.rapidapi.com/games?" +"ordering=" + queryString.parse(props.location.search).order+ "&page="+parseInt(pc.page),
+      url: "https://rawg-video-games-database.p.rapidapi.com/games?" +"ordering=" +
+       queryString.parse(props.location.search).order+ "&page="+parseInt(pc.page),
       headers: {
         "content-type": "application/octet-stream",
         "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com",
@@ -104,8 +105,8 @@ function GameList(props) {
       }>
           <option value="">Select an order</option>
           <option value="name">Name</option>
-          <option value="ReleaseDate">Release Date</option>
-          <option value="Rating">Rating</option>
+          <option value="released">Release Date</option>
+          <option value="rating">Rating</option>
         </select>
         <select className="platformSelector">
           <option value="AllPlatforms">Select a platform</option>
