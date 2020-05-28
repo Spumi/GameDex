@@ -12,6 +12,7 @@ function GameList(props) {
   const pc = useContext(PageContext);
   const [platform, setPlatform] = useState({ platforms: [] });
   const [sort, setsort] = useState({order: ""})
+  const [filter, setFilter] = useState({platforms: ""})
 
   useEffect(() => {if (props.match.path !== "/"){
     setPage({page: props.match.params.page});
@@ -22,13 +23,29 @@ function GameList(props) {
     setPage({page: 1});
   },[props.match.params.page, sort.order])
 
+  const buildQueryString = () =>{
+    // if (sort.order != "")
+    //   query += "ordering=" + queryString.parse(props.location.search).order
+    // if (filter.platforms != "")
+    //   query += "&platforms=" + filter.platforms + "&"
+    // query += "&page="+parseInt(pc.page)
+    let queryString = new URLSearchParams()
+    if (sort.order != "")
+      queryString.append("ordering", sort.order)
+    if (filter.platforms != "")
+      queryString.append("platforms", filter.platforms)
+    queryString.append("page", pc.page)
+
+    console.log(queryString.toString())
+    
+    return queryString;
+  }
 
   useEffect(() => {
     
     axios({
       method: "GET",
-      url: "https://rawg-video-games-database.p.rapidapi.com/games?" +"ordering=" +
-       queryString.parse(props.location.search).order+ "&page="+parseInt(pc.page),
+      url: "https://rawg-video-games-database.p.rapidapi.com/games?" + buildQueryString(),
       headers: {
         "content-type": "application/octet-stream",
         "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com",
@@ -38,11 +55,12 @@ function GameList(props) {
     })
       .then((response) => {
         setstate({ games: response.data });
+        console.log(buildQueryString())
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [pc.page, sort.order]);
+  }, [pc.page, sort.order, filter.platforms]);
 
   const prevButton = () =>{
     if (pc.page < 2){
@@ -63,7 +81,8 @@ function GameList(props) {
     return(
       <Link to={{
         pathname: parseInt(pc.page) + 1,
-        search: sort.order !== ""? "?order=" + sort.order : "", 
+        search: sort.order !== ""? "?order=" + sort.order : "" +
+        filter.platforms !== "" ? "&platform=" + filter.platforms : "", 
         state: { fromDashboard: true }
       }}>
         <button> Next</button>
@@ -108,7 +127,15 @@ function GameList(props) {
           <option value="released">Release Date</option>
           <option value="rating">Rating</option>
         </select>
-        <select className="platformSelector">
+        <select className="platformSelector" onChange={
+          (e) => {
+            setFilter({platforms: e.target.value})
+            // window.location.href= (props.match.params.page !== "undefined"? 1 : props.match.params.page) + "&order=" + e.target.value
+            props.history.push({
+              pathname: pc.page,
+              search: "?" + new URLSearchParams({sort: e.target.value}).toString()
+          })
+        }}>
           <option value="AllPlatforms">Select a platform</option>
           {platform.platforms.map((p) => (
             <option value={p.id}>{p.name}</option>
