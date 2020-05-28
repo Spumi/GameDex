@@ -35,8 +35,7 @@ const App = (props) => {
         </PageContext.Provider>
           <Route path="/developers" component={DeveloperList} />
           <Route path="/publishers" component={PublisherList} />
-          <button>Previous</button>
-          <button>Next</button>
+          
         </CardContainer>
       </div>
     </BrowserRouter>

@@ -40,14 +40,29 @@ function GameList(props) {
       });
   }, [pc.page]);
 
-
-  return (
-    <div>
-      <button>Previous</button>
+  const prevButton = () =>{
+    if (pc.page < 2){
+      return null
+    }else{
+      return(
+      <Link to={`/${parseInt(pc.page) - 1}`}>
+        <button>Previous</button>
+      </Link>
+      )
+    }
+  }
+  const nextButton = () =>{
+    return(
       <Link to={`/${parseInt(pc.page) + 1}`}>
         <button> Next</button>
       </Link>
-     
+    )
+  }
+
+  return (
+    <div>
+      {prevButton()}
+      {nextButton()}     
     <div className="row">
       <div className="col">
         <div className="row">
@@ -57,7 +72,8 @@ function GameList(props) {
         </div>
       </div>
     </div>
-    
+      {prevButton()}
+      {nextButton()}     
     </div>
   );
 }
