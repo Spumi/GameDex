@@ -30,10 +30,10 @@ const App = (props) => {
             <Route exact path="/:page" component={GameList} />
           </PageContext.Provider>
           <Route exact path="/">
-            <Redirect to="/1" />
+            <Redirect from="/" to="/1" />
           </Route>
-          <Route path="/developers" component={DeveloperList} />
-          <Route path="/publishers" component={PublisherList} />
+          <Route exact path="/developers" component={DeveloperList} />
+          <Route exact path="/publishers" component={PublisherList} />
         </CardContainer>
       </div>
     </BrowserRouter>

@@ -24,11 +24,7 @@ function GameList(props) {
   },[props.match.params.page, sort.order])
 
   const buildQueryString = () =>{
-    // if (sort.order != "")
-    //   query += "ordering=" + queryString.parse(props.location.search).order
-    // if (filter.platforms != "")
-    //   query += "&platforms=" + filter.platforms + "&"
-    // query += "&page="+parseInt(pc.page)
+
     let queryString = new URLSearchParams()
     if (sort.order != "")
       queryString.append("ordering", sort.order)
@@ -57,6 +53,15 @@ function GameList(props) {
       });
   }, [pc.page, sort.order, filter.platforms]);
 
+  const internalQuery = () =>{
+    let queryString = new URLSearchParams()
+    if (sort.order != "")
+      queryString.append("order", sort.order)
+    if (filter.platforms != "")
+      queryString.append("sort", filter.platforms)
+    return queryString.toString()
+  }
+
   const prevButton = () =>{
     if (pc.page < 2){
       return null
@@ -64,7 +69,7 @@ function GameList(props) {
       return(
         <Link to={{
           pathname: parseInt(pc.page) - 1,
-          search: sort.order !== ""? "?order=" + sort.order : "", 
+          search: "?" + internalQuery(), 
           state: { fromDashboard: true }
         }}>
         <button>Previous</button>
@@ -72,12 +77,13 @@ function GameList(props) {
       )
     }
   }
+
   const nextButton = () =>{
+    
     return(
       <Link to={{
         pathname: parseInt(pc.page) + 1,
-        search: sort.order !== ""? "?order=" + sort.order : "" +
-        filter.platforms !== "" ? "&platform=" + filter.platforms : "", 
+        search: "?" + internalQuery(), 
         state: { fromDashboard: true }
       }}>
         <button> Next</button>
@@ -113,14 +119,14 @@ function GameList(props) {
             // window.location.href= (props.match.params.page !== "undefined"? 1 : props.match.params.page) + "&order=" + e.target.value
             props.history.push({
               pathname: pc.page,
-              search: "?" + new URLSearchParams({order: e.target.value}).toString()
+              search: "?" + internalQuery()
           })
         }
       }>
           <option value="">Select an order</option>
           <option value="name">Name</option>
-          <option value="released">Release Date</option>
-          <option value="rating">Rating</option>
+          <option value="-released">Release Date</option>
+          <option value="-rating">Rating</option>
         </select>
         <select className="platformSelector" onChange={
           (e) => {
@@ -128,10 +134,10 @@ function GameList(props) {
             // window.location.href= (props.match.params.page !== "undefined"? 1 : props.match.params.page) + "&order=" + e.target.value
             props.history.push({
               pathname: pc.page,
-              search: "?" + new URLSearchParams({sort: e.target.value}).toString()
+              search: "?" + internalQuery()
           })
         }}>
-          <option value="AllPlatforms">Select a platform</option>
+          <option value="">Select a platform</option>
           {platform.platforms.map((p) => (
             <option key={p.id} value={p.id}>
               {p.name}
