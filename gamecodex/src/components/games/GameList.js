@@ -49,17 +49,17 @@ function GameList(props) {
       return null
     }else{
       return(
-      <Link to={`/${parseInt(pc.page) - 1}`}>
+        <Link to={{
+          pathname: parseInt(pc.page) - 1,
+          search: sort.order !== ""? "?order=" + sort.order : "", 
+          state: { fromDashboard: true }
+        }}>
         <button>Previous</button>
       </Link>
       )
     }
   }
   const nextButton = () =>{
-    
-    let order = queryString.parse(props.location.search)
-    console.log("order: " + order.order)
-
     return(
       <Link to={{
         pathname: parseInt(pc.page) + 1,
