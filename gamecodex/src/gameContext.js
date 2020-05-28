@@ -1,5 +1,5 @@
 import React from "react";
 
-const GameIdProvider = React.createContext();
-export const PageProvider = GameIdProvider.Provider;
-export default GameIdProvider;
+const GameContext = React.createContext({ gameId: null });
+export const PageProvider = GameContext.Provider;
+export default GameContext;

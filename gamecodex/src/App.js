@@ -9,6 +9,8 @@ import GameList from "./components/games/GameList";
 import DeveloperList from "./components/developers/DeveloperList";
 import PublisherList from "./components/publishers/PublisherList";
 import PageContext from "./pageContext";
+import GameContext, { GameIdProvider } from "./GameContext";
+import GameInfo from "./components/games/GameInfo";
 
 const CardContainer = styled.div`
   width: 80%;
@@ -21,6 +23,7 @@ const CardContainer = styled.div`
 
 const App = (props) => {
   const pc = useContext(PageContext);
+  const gc = useContext(GameContext);
   return (
     <BrowserRouter>
       <div className="App">
@@ -34,6 +37,9 @@ const App = (props) => {
           </PageContext.Provider>
           <Route path="/developers" component={DeveloperList} />
           <Route path="/publishers" component={PublisherList} />
+          <GameContext.Provider value={gc}>
+            <Route path="/game/:gameId" component={GameInfo} />
+          </GameContext.Provider>
         </CardContainer>
       </div>
     </BrowserRouter>
