@@ -5,27 +5,26 @@ import { Link } from "react-router-dom";
 import PageContext from "../../pageContext";
 
 function GameList(props) {
-  const [state, setstate] = useState({ games: {results: []} });
+  const [state, setstate] = useState({ games: { results: [] } });
   const [page, setPage] = useState({ page: 1 });
   const pc = useContext(PageContext);
   const [platform, setPlatform] = useState({ platforms: [] });
 
-  useEffect(() => {if (props.match.path !== "/"){
-    setPage({page: props.match.params.page});
-    if (pc.page !=  props.match.params.page)
-      pc.page = props.match.params.page;
-      console.log("pc: " + pc.page)
-  }
-  else
-    setPage({page: 1});
-  },[props.match.params.page])
-
+  useEffect(() => {
+    if (props.match.path !== "/") {
+      setPage({ page: props.match.params.page });
+      if (pc.page !== props.match.params.page)
+        pc.page = props.match.params.page;
+      console.log("pc: " + pc.page);
+    } else setPage({ page: 1 });
+  }, [pc.page, props.match.params.page, props.match.path]);
 
   useEffect(() => {
-    
     axios({
       method: "GET",
-      url: "https://rawg-video-games-database.p.rapidapi.com/games?page="+parseInt(pc.page),
+      url:
+        "https://rawg-video-games-database.p.rapidapi.com/games?page=" +
+        parseInt(pc.page),
       headers: {
         "content-type": "application/octet-stream",
         "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com",
@@ -35,31 +34,30 @@ function GameList(props) {
     })
       .then((response) => {
         setstate({ games: response.data });
-        console.log(props.match.params.page)
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [pc.page]);
+  }, [pc.page, props.match.params.page]);
 
-  const prevButton = () =>{
-    if (pc.page < 2){
-      return null
-    }else{
-      return(
-      <Link to={`/${parseInt(pc.page) - 1}`}>
-        <button>Previous</button>
-      </Link>
-      )
+  const prevButton = () => {
+    if (pc.page < 2) {
+      return null;
+    } else {
+      return (
+        <Link to={`/${parseInt(pc.page) - 1}`}>
+          <button>Previous</button>
+        </Link>
+      );
     }
-  }
-  const nextButton = () =>{
-    return(
+  };
+  const nextButton = () => {
+    return (
       <Link to={`/${parseInt(pc.page) + 1}`}>
         <button> Next</button>
       </Link>
-    )
-  }
+    );
+  };
 
   useEffect(() => {
     axios({
@@ -94,15 +92,19 @@ function GameList(props) {
         <select className="platformSelector">
           <option value="AllPlatforms">Select a platform</option>
           {platform.platforms.map((p) => (
-            <option value={p.id}>{p.name}</option>
+            <option key={p.id} value={p.id}>
+              {p.name}
+            </option>
           ))}
         </select>
         <button type="submit" onClick={SortGames}>
           Filter
         </button>
+        <div className="next-previous">
+          {prevButton()}
+          {nextButton()}
+        </div>
       </div>
-      {prevButton()}
-      {nextButton()}
       <div className="row">
         <div className="col">
           <div className="row">
@@ -112,8 +114,10 @@ function GameList(props) {
           </div>
         </div>
       </div>
-      {prevButton()}
-      {nextButton()}
+      <div className="next-previous">
+        {prevButton()}
+        {nextButton()}
+      </div>
     </React.Fragment>
   );
 }

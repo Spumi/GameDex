@@ -3,7 +3,6 @@ import axios from "axios";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-
 const StyledLink = styled(Link)`
   color: lightgray;
 `;
@@ -20,6 +19,7 @@ function GameCard(props) {
     game: {
       developers: [],
       publishers: [],
+      platforms: [],
     },
   });
 
@@ -42,7 +42,7 @@ function GameCard(props) {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [props.game.id]);
   let devs = "";
   devs += state.game.developers.map((dev) => {
     return dev.name;
