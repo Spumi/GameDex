@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import GameCard from "./GameCard";
 
 const StyledLink = styled(Link)`
-  color: blue;
+  color: lightgray;
 `;
 
 const Sprite = styled.img`
