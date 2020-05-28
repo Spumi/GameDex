@@ -32,8 +32,8 @@ const App = (props) => {
           <PageContext.Provider value={pc}>
             <Route exact path="/" component={GameList} />
           </PageContext.Provider>
-          <Route path="/developers" component={DeveloperList} />
-          <Route path="/publishers" component={PublisherList} />
+          <Route exact path="/developers" component={DeveloperList} />
+          <Route exact path="/publishers" component={PublisherList} />
         </CardContainer>
       </div>
     </BrowserRouter>
