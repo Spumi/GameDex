@@ -3,13 +3,16 @@ import axios from "axios";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+
 const StyledLink = styled(Link)`
-  color: blue;
+  color: lightgray;
 `;
 
 const Sprite = styled.img`
-  width: 120px;
-  height: 120px;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin: 5px;
 `;
 
 function GameCard(props) {
@@ -53,32 +56,31 @@ function GameCard(props) {
             <Sprite className="GameImage" src={state.game.background_image} />
             <h5>{state.game.name}</h5>
           </StyledLink>
-        </div>
-        <div className="card-body">
-          <div className="GameCard">
-            <div className="developerRoute">
-              <h6>Developer:</h6>
-              {state.game.developers.map((dev) => {
-                return (
-                  <StyledLink key={dev.id} to={`/developer/${dev.id}`}>
-                    <h6>{dev.name}</h6>
-                  </StyledLink>
-                );
-              })}
-            </div>
-            <div className="publisherRoute">
-              <h6>Publisher:</h6>
-              {state.game.publishers.map((pub) => {
-                return (
-                  <StyledLink key={pub.id} to={`/publisher/${pub.id}`}>
-                    <h6>{pub.name}</h6>
-                  </StyledLink>
-                );
-              })}
-            </div>
-            <div className="ratingInfo">
-              <h6>Rating:</h6>
-              <h6>{state.game.rating}</h6>
+          <div className="card-body">
+            <div className="GameCard">
+              <div className="developerRoute">
+                <h5>Developer(s):</h5>
+                {state.game.developers.map((dev) => {
+                  return (
+                    <StyledLink key={dev.id} to={`/developer/${dev.id}`}>
+                      <h6>{dev.name}</h6>
+                    </StyledLink>
+                  );
+                })}
+              </div>
+              <div className="publisherRoute">
+                <h5>Publisher(s):</h5>
+                {state.game.publishers.map((pub) => {
+                  return (
+                    <StyledLink key={pub.id} to={`/publisher/${pub.id}`}>
+                      <h6>{pub.name}</h6>
+                    </StyledLink>
+                  );
+                })}
+              </div>
+              <div className="ratingInfo">
+                <h5>Rating: {state.game.rating}</h5>
+              </div>
             </div>
           </div>
         </div>
