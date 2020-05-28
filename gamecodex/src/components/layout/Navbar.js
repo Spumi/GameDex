@@ -15,7 +15,7 @@ const Navbar = (props) => {
   return (
     <div className="navbar navbar-expand-md fixed-top justify-content-between">
       <h4>
-        <LinkStyle to="/">Games</LinkStyle>
+        <LinkStyle to="/1">Games</LinkStyle>
       </h4>
       <h4>
         <LinkStyle to="/developers">Developers</LinkStyle>
