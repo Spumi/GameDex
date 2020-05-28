@@ -1,22 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import GameCard from "./GameCard";
 import { Link } from "react-router-dom";
+import PageContext from "../../pageContext";
 
 function GameList(props) {
   const [state, setstate] = useState({ games: {results: []} });
   const [page, setPage] = useState({ page: 1 });
+  const pc = useContext(PageContext);
+
+  useEffect(() => {if (props.match.path !== "/"){
+    setPage({page: props.match.params.page});
+    if (pc.page !=  props.match.params.page)
+      pc.page = props.match.params.page;
+      console.log("pc: " + pc.page)
+  }
+  else
+    setPage({page: 1});
+  },[props.match.params.page])
 
   useEffect(() => {
-    if (props.match.path !== "/"){
-      setPage({page: props.match.params.page});
-    }
-    else
-      setPage({page: 1});
     
     axios({
       method: "GET",
-      url: "https://rawg-video-games-database.p.rapidapi.com/games?page="+parseInt(page.page),
+      url: "https://rawg-video-games-database.p.rapidapi.com/games?page="+parseInt(pc.page),
       headers: {
         "content-type": "application/octet-stream",
         "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com",
@@ -31,15 +38,16 @@ function GameList(props) {
       .catch((error) => {
         console.log(error);
       });
-  }, [props.match.params]);
+  }, [pc.page]);
 
 
   return (
     <div>
       <button>Previous</button>
-      <Link to={`/${parseInt(page.page) + 1}`}>
+      <Link to={`/${parseInt(pc.page) + 1}`}>
         <button> Next</button>
       </Link>
+     
     <div className="row">
       <div className="col">
         <div className="row">
@@ -49,6 +57,7 @@ function GameList(props) {
         </div>
       </div>
     </div>
+    
     </div>
   );
 }
