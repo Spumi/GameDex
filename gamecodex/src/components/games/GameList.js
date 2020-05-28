@@ -7,7 +7,7 @@ import queryString from 'query-string'
 
 
 function GameList(props) {
-  const [state, setstate] = useState({ games: {results: []} });
+  const [state, setstate] = useState({ games: { results: [] } });
   const [page, setPage] = useState({ page: 1 });
   const pc = useContext(PageContext);
   const [platform, setPlatform] = useState({ platforms: [] });
@@ -39,7 +39,6 @@ function GameList(props) {
   }
 
   useEffect(() => {
-    
     axios({
       method: "GET",
       url: "https://rawg-video-games-database.p.rapidapi.com/games?" + buildQueryString(),
@@ -83,8 +82,8 @@ function GameList(props) {
       }}>
         <button> Next</button>
       </Link>
-    )
-  }
+    );
+  };
 
   useEffect(() => {
     axios({
@@ -134,15 +133,19 @@ function GameList(props) {
         }}>
           <option value="AllPlatforms">Select a platform</option>
           {platform.platforms.map((p) => (
-            <option value={p.id}>{p.name}</option>
+            <option key={p.id} value={p.id}>
+              {p.name}
+            </option>
           ))}
         </select>
         <button type="submit">
           Filter
         </button>
+        <div className="next-previous">
+          {prevButton()}
+          {nextButton()}
+        </div>
       </div>
-      {prevButton()}
-      {nextButton()}
       <div className="row">
         <div className="col">
           <div className="row">
@@ -152,8 +155,10 @@ function GameList(props) {
           </div>
         </div>
       </div>
-      {prevButton()}
-      {nextButton()}
+      <div className="next-previous">
+        {prevButton()}
+        {nextButton()}
+      </div>
     </React.Fragment>
   );
 }
