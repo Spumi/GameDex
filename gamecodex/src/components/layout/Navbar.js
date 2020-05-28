@@ -5,13 +5,17 @@ import { Link } from "react-router-dom";
 const LinkStyle = styled(Link)`
   font-weight: bold;
   color: lightgray;
+  &:hover {
+    color: lightgray;
+    opacity: 0.7;
+  }
 `;
 
 const Navbar = (props) => {
   return (
-    <div className="navbar navbar-expand-md bg-dark fixed-top justify-content-between">
+    <div className="navbar navbar-expand-md fixed-top justify-content-between">
       <h4>
-        <LinkStyle to="/">Games</LinkStyle>
+        <LinkStyle to="/1">Games</LinkStyle>
       </h4>
       <h4>
         <LinkStyle to="/developers">Developers</LinkStyle>
