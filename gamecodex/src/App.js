@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import React, { useState, useEffect, useContext } from "react";
 import Navbar from "./components/layout/Navbar";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Redirect  } from "react-router-dom";
 import styled from "styled-components";
 import GameList from "./components/games/GameList";
 import DeveloperList from "./components/developers/DeveloperList";
@@ -28,11 +28,12 @@ const App = (props) => {
         <Navbar />
         <CardContainer>
         <PageContext.Provider value={pc}>
-            <Route exact path="/:page" component={GameList} />
+            <Route path="/:page" component={GameList} />
         </PageContext.Provider>
-        <PageContext.Provider value={pc}>
-          <Route exact path="/" component={GameList} />
-        </PageContext.Provider>
+          {/* <Route exact path="/" component={GameList} /> */}
+          <Route path="/">
+            <Redirect to="/1" />
+          </Route>
           <Route path="/developers" component={DeveloperList} />
           <Route path="/publishers" component={PublisherList} />
           
