@@ -35,9 +35,6 @@ function GameList(props) {
     if (filter.platforms != "")
       queryString.append("platforms", filter.platforms)
     queryString.append("page", pc.page)
-
-    console.log(queryString.toString())
-    
     return queryString;
   }
 
@@ -55,7 +52,6 @@ function GameList(props) {
     })
       .then((response) => {
         setstate({ games: response.data });
-        console.log(buildQueryString())
       })
       .catch((error) => {
         console.log(error);
