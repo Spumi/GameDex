@@ -22,11 +22,11 @@ const StyledButton = styled.button`
   align-self: center;
 `;
 
-function SignUp(props) {
+function LogIn(props) {
   return (
     <React.Fragment>
       <CenterDiv className="card">
-        <StyledH3>Sign Up</StyledH3>
+        <StyledH3>Login</StyledH3>
         <StyledLabel for="email">
           <b>Username</b>
         </StyledLabel>
@@ -46,11 +46,11 @@ function SignUp(props) {
           required
         ></input>
         <StyledButton type="submit" class="signupbtn">
-          Sign Up
+          Login
         </StyledButton>
       </CenterDiv>
     </React.Fragment>
   );
 }
 
-export default SignUp;
+export default LogIn;
