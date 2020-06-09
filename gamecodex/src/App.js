@@ -9,6 +9,7 @@ import GameList from "./components/games/GameList";
 import DeveloperList from "./components/developers/DeveloperList";
 import PublisherList from "./components/publishers/PublisherList";
 import PageContext from "./pageContext";
+import SignUp from "./components/SignUp";
 
 const CardContainer = styled.div`
   width: 80%;
@@ -34,6 +35,7 @@ const App = (props) => {
           </Route>
           <Route exact path="/developers" component={DeveloperList} />
           <Route exact path="/publishers" component={PublisherList} />
+          <Route exact path="/signup" component={SignUp} />
         </CardContainer>
       </div>
     </BrowserRouter>
