@@ -16,10 +16,14 @@ const StyledLabel = styled.label`
   color: lightgray;
 `;
 
-const StyledButton = styled.button`
+const StyledInput = styled.input`
   margin-top: 30px;
   width: 50%;
   align-self: center;
+`;
+
+const StyledForm = styled.form`
+  margin: auto;
 `;
 
 function SignUp(props) {
@@ -27,27 +31,31 @@ function SignUp(props) {
     <React.Fragment>
       <CenterDiv className="card">
         <StyledH3>Sign Up</StyledH3>
-        <StyledLabel for="email">
-          <b>Username</b>
-        </StyledLabel>
-        <input
-          type="text"
-          placeholder="Enter Username"
-          name="username"
-          required
-        ></input>
-        <StyledLabel for="psw">
-          <b>Password</b>
-        </StyledLabel>
-        <input
-          type="password"
-          placeholder="Enter Password"
-          name="psw"
-          required
-        ></input>
-        <StyledButton type="submit" class="signupbtn">
-          Sign Up
-        </StyledButton>
+        <StyledForm action="https://localhost:44363/api/users" method="POST">
+          <StyledLabel for="username">
+            <b>Username</b>
+          </StyledLabel>
+          <input
+            type="text"
+            placeholder="Enter Username"
+            name="username"
+            required
+          ></input>
+          <StyledLabel for="psw">
+            <b>Password</b>
+          </StyledLabel>
+          <input
+            type="password"
+            placeholder="Enter Password"
+            name="psw"
+            required
+          ></input>
+          <StyledInput
+            type="submit"
+            className="signupbtn"
+            value="Sign up"
+          ></StyledInput>
+        </StyledForm>
       </CenterDiv>
     </React.Fragment>
   );

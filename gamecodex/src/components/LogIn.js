@@ -27,7 +27,7 @@ function LogIn(props) {
     <React.Fragment>
       <CenterDiv className="card">
         <StyledH3>Login</StyledH3>
-        <StyledLabel for="email">
+        <StyledLabel for="username">
           <b>Username</b>
         </StyledLabel>
         <input
@@ -45,7 +45,11 @@ function LogIn(props) {
           name="psw"
           required
         ></input>
-        <StyledButton type="submit" class="signupbtn">
+        <StyledButton
+          type="submit"
+          className="signupbtn"
+          onClick="LoginRequest"
+        >
           Login
         </StyledButton>
       </CenterDiv>
