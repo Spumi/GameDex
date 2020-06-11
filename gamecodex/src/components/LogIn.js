@@ -27,7 +27,7 @@ function LogIn(props) {
     <React.Fragment>
       <CenterDiv className="card">
         <StyledH3>Login</StyledH3>
-        <StyledLabel for="username">
+        <StyledLabel>
           <b>Username</b>
         </StyledLabel>
         <input
@@ -36,7 +36,7 @@ function LogIn(props) {
           name="username"
           required
         ></input>
-        <StyledLabel for="psw">
+        <StyledLabel>
           <b>Password</b>
         </StyledLabel>
         <input

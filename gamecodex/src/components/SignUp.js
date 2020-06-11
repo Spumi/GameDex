@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 const CenterDiv = styled.div`
   margin: 0 auto;
@@ -26,28 +27,44 @@ const StyledForm = styled.form`
   margin: auto;
 `;
 
+const AddUser = (event) => {
+  event.preventDefault();
+  const user = {
+    Username: "asd",
+    Password: "asd",
+  };
+  axios
+    .post("https://localhost:44363/api/users", user)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
 function SignUp(props) {
   return (
     <React.Fragment>
       <CenterDiv className="card">
         <StyledH3>Sign Up</StyledH3>
-        <StyledForm action="https://localhost:44363/api/users" method="POST">
-          <StyledLabel for="username">
+        <StyledForm onSubmit={(event) => AddUser(event)}>
+          <StyledLabel>
             <b>Username</b>
           </StyledLabel>
           <input
             type="text"
             placeholder="Enter Username"
-            name="username"
+            name="Username"
             required
           ></input>
-          <StyledLabel for="psw">
+          <StyledLabel>
             <b>Password</b>
           </StyledLabel>
           <input
             type="password"
             placeholder="Enter Password"
-            name="psw"
+            name="Password"
             required
           ></input>
           <StyledInput
