@@ -81,6 +81,9 @@ function GameCard(props) {
               <div className="ratingInfo">
                 <h5>Rating: {state.game.rating}</h5>
               </div>
+              <div className="addToFav">
+                <StyledLink key={state.game.id}>Favorite</StyledLink>
+              </div>
             </div>
           </div>
         </div>
