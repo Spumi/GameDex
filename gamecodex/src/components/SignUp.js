@@ -36,6 +36,9 @@ const AddUser = (event) => {
   axios
     .post("https://localhost:44363/api/users", user)
     .then((response) => {
+      if (response.data.id === 0) {
+        window.alert("This username is already taken.");
+      }
       console.log(response);
     })
     .catch((error) => {
