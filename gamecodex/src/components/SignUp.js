@@ -60,6 +60,8 @@ function SignUp(props) {
             placeholder="Enter Username"
             name="Username"
             className="username"
+            minLength={3}
+            maxLength={18}
             required
           ></input>
           <StyledLabel>
@@ -70,6 +72,8 @@ function SignUp(props) {
             placeholder="Enter Password"
             name="Password"
             className="password"
+            minLength={6}
+            maxLength={18}
             required
           ></input>
           <StyledInput
