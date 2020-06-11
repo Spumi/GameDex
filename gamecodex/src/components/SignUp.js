@@ -38,6 +38,8 @@ const AddUser = (event) => {
     .then((response) => {
       if (response.data.id === 0) {
         window.alert("This username is already taken.");
+      } else {
+        window.alert("Successfully registered.");
       }
       console.log(response);
     })

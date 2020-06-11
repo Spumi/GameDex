@@ -38,6 +38,8 @@ const LoginUser = (event) => {
     .then((response) => {
       if (response.data.username === null) {
         window.alert("There is no account with this username/password.");
+      } else {
+        window.alert("Login successful.");
       }
       console.log(response);
     })
