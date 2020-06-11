@@ -30,8 +30,8 @@ const StyledForm = styled.form`
 const AddUser = (event) => {
   event.preventDefault();
   const user = {
-    Username: "asd",
-    Password: "asd",
+    Username: document.getElementsByClassName("username")[0].value,
+    Password: document.getElementsByClassName("password")[0].value,
   };
   axios
     .post("https://localhost:44363/api/users", user)
@@ -56,6 +56,7 @@ function SignUp(props) {
             type="text"
             placeholder="Enter Username"
             name="Username"
+            className="username"
             required
           ></input>
           <StyledLabel>
@@ -65,6 +66,7 @@ function SignUp(props) {
             type="password"
             placeholder="Enter Password"
             name="Password"
+            className="password"
             required
           ></input>
           <StyledInput
