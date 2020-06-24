@@ -21,7 +21,10 @@ const AddToFavs = (event) => {
   };
   axios
     .post("https://localhost:44363/api/Favourite", favGame)
-    .then((response) => {});
+    .then((response) => {})
+    .catch((error) => {
+      console.log(error);
+    });
 };
 
 function GameCard(props) {
