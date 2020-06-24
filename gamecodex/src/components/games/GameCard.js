@@ -14,6 +14,16 @@ const Sprite = styled.img`
   margin: 5px;
 `;
 
+const AddToFavs = (event) => {
+  event.preventDefault();
+  const favGame = {
+    GameId: document.getElementsByClassName("addToFavGames")[0].value,
+  };
+  axios
+    .post("https://localhost:44363/api/Favourite", favGame)
+    .then((response) => {});
+};
+
 function GameCard(props) {
   const [state, setstate] = useState({
     game: {
@@ -80,6 +90,16 @@ function GameCard(props) {
               </div>
               <div className="ratingInfo">
                 <h5>Rating: {state.game.rating}</h5>
+              </div>
+              <div>
+                <StyledLink
+                  key={state.game.id}
+                  onSubmit={(event) => AddToFavs(event)}
+                >
+                  <button className="addToFavGames" type="submit">
+                    Favourite
+                  </button>
+                </StyledLink>
               </div>
             </div>
           </div>
